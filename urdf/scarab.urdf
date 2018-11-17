@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<robot name="scarab" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="base_link_fake">
+  </link>
+
+    <joint name="fake_base_link_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_link_fake"/>
+      <child link="base_link"/>
+    </joint>
+
+  <link name="base_link">
+      <inertial>
+        <!-- TODO: KAREN GO BACK AND EDIT ALL THESE VALUES USING THE SOLIDWORKS MODEL -->
+        <mass value="7.0"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/shell4.dae"/>
+        </geometry>
+      </visual>
+      <collision name="body_collision">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/shell4.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="br_arm_joint" type="prismatic">
+      <origin xyz="0 -0.5 0" rpy="0 0 0" />
+      <axis
+        xyz="1 0 0" />
+      <limit
+        effort="100"
+        lower="-1"
+        upper="1"
+        velocity="2" />
+      <parent link="base_link"/>
+      <child link="br_arm_link"/>
+    </joint>
+
+    <transmission name="br_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="br_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="br_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <link name="br_arm_link">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="0.1 1 0.1" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="bl_arm_joint" type="prismatic">
+      <origin xyz="0 0.5 0" rpy="0 0 0" />
+      <axis
+        xyz="1 0 0" />
+      <limit
+        effort="100"
+        lower="-1"
+        upper="1"
+        velocity="2" />
+      <parent link="base_link"/>
+      <child link="bl_arm_link"/>
+    </joint>
+
+    <transmission name="bl_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="bl_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="bl_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+
+    <link name="bl_arm_link">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+          <!--cylinder radius="0.01" length=".5" /-->
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="fr_arm_joint" type="prismatic">
+      <origin xyz="1 -0.5 0" rpy="0 0 0" />
+      <axis
+        xyz="1 0 0" />
+      <limit
+        effort="100"
+        lower="-1"
+        upper="1"
+        velocity="2" />
+      <parent link="base_link"/>
+      <child link="fr_arm_link"/>
+    </joint>
+
+    <transmission name="fr_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="fr_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="fr_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+
+    <link name="fr_arm_link">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="fl_arm_joint" type="prismatic">
+      <origin xyz="1 0.5 0" rpy="0 0 0" />
+      <axis
+        xyz="1 0 0" />
+      <limit
+        effort="100"
+        lower="-1"
+        upper="1"
+        velocity="2" />
+      <parent link="base_link"/>
+      <child link="fl_arm_link"/>
+    </joint>
+
+    <transmission name="fl_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="fl_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="fl_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+
+    <link name="fl_arm_link">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!--mesh filename="package://scarab_description/meshes/rocker.dae" /-->
+          <box size="1 0.1 0.1" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="fl_wheel_joint" type="revolute">
+      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <axis
+        xyz="0 0 1" />
+      <limit
+        effort="0"
+        lower="-1.57079"
+        upper="1.57079"
+        velocity="5" />
+      <parent link="fl_arm_link"/>
+      <child link="fl_wheel_link"/>
+    </joint>
+
+
+    <link name="fl_wheel_link">
+      <inertial>
+        <mass value="2"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="bl_wheel_joint" type="revolute">
+      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <axis
+        xyz="0 0 1" />
+      <limit
+        effort="0"
+        lower="-1.57079"
+        upper="1.57079"
+        velocity="0" />
+      <parent link="bl_arm_link"/>
+      <child link="bl_wheel_link"/>
+    </joint>
+
+
+    <link name="bl_wheel_link">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="fr_wheel_joint" type="revolute">
+      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <axis
+        xyz="0 0 1" />
+      <limit
+        effort="0"
+        lower="-1.57079"
+        upper="1.57079"
+        velocity="5" />
+      <parent link="fr_arm_link"/>
+      <child link="fr_wheel_link"/>
+    </joint>
+
+
+    <link name="fr_wheel_link">
+      <inertial>
+        <mass value="2"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="br_wheel_joint" type="revolute">
+      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <axis
+        xyz="0 0 1" />
+      <limit
+        effort="0"
+        lower="-1.57079"
+        upper="1.57079"
+        velocity="0" />
+      <parent link="br_arm_link"/>
+      <child link="br_wheel_link"/>
+    </joint>
+
+
+    <link name="br_wheel_link">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        <origin/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+        <material name="gray">
+          <color rgba=".2 .2 .2 1" />
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/scarab</robotNamespace>
+        <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+      </plugin>
+    </gazebo>
+
+
+
+</robot>
