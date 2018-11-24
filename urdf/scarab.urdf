@@ -31,7 +31,7 @@
     </link>
 
     <joint name="br_arm_joint" type="prismatic">
-      <origin xyz="0 -0.5 0" rpy="0 0 0" />
+      <origin xyz="0 -0.65 0" rpy="0 0 0" />
       <axis
         xyz="1 0 0" />
       <limit
@@ -43,16 +43,6 @@
       <child link="br_arm_link"/>
     </joint>
 
-    <transmission name="br_arm_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="br_arm_joint">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="br_arm_motor">
-        <mechanicalReduction>1</mechanicalReduction>
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </actuator>
-    </transmission>
 
     <link name="br_arm_link">
       <inertial>
@@ -81,7 +71,7 @@
     </link>
 
     <joint name="bl_arm_joint" type="prismatic">
-      <origin xyz="0 0.5 0" rpy="0 0 0" />
+      <origin xyz="0 0.45 0" rpy="0 0 0" />
       <axis
         xyz="1 0 0" />
       <limit
@@ -92,17 +82,6 @@
       <parent link="base_link"/>
       <child link="bl_arm_link"/>
     </joint>
-
-    <transmission name="bl_arm_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="bl_arm_joint">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="bl_arm_motor">
-        <mechanicalReduction>1</mechanicalReduction>
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </actuator>
-    </transmission>
 
 
     <link name="bl_arm_link">
@@ -133,7 +112,7 @@
     </link>
 
     <joint name="fr_arm_joint" type="prismatic">
-      <origin xyz="1 -0.5 0" rpy="0 0 0" />
+      <origin xyz="1 -0.65 0" rpy="0 0 0" />
       <axis
         xyz="1 0 0" />
       <limit
@@ -144,17 +123,6 @@
       <parent link="base_link"/>
       <child link="fr_arm_link"/>
     </joint>
-
-    <transmission name="fr_arm_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="fr_arm_joint">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="fr_arm_motor">
-        <mechanicalReduction>1</mechanicalReduction>
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </actuator>
-    </transmission>
 
 
     <link name="fr_arm_link">
@@ -184,7 +152,7 @@
     </link>
 
     <joint name="fl_arm_joint" type="prismatic">
-      <origin xyz="1 0.5 0" rpy="0 0 0" />
+      <origin xyz="1 0.45 0" rpy="0 0 0" />
       <axis
         xyz="1 0 0" />
       <limit
@@ -195,17 +163,6 @@
       <parent link="base_link"/>
       <child link="fl_arm_link"/>
     </joint>
-
-    <transmission name="fl_arm_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="fl_arm_joint">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="fl_arm_motor">
-        <mechanicalReduction>1</mechanicalReduction>
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </actuator>
-    </transmission>
 
 
     <link name="fl_arm_link">
@@ -235,7 +192,7 @@
     </link>
 
     <joint name="fl_wheel_joint" type="revolute">
-      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <origin xyz="0.5 0.05 0" rpy="-1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
@@ -272,7 +229,7 @@
     </link>
 
     <joint name="bl_wheel_joint" type="revolute">
-      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <origin xyz="-0.5 0.05 0" rpy="-1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
@@ -310,7 +267,7 @@
     </link>
 
     <joint name="fr_wheel_joint" type="revolute">
-      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <origin xyz="0.5 -0.05 -0.1" rpy="1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
@@ -347,7 +304,7 @@
     </link>
 
     <joint name="br_wheel_joint" type="revolute">
-      <origin xyz="-0.5 0 0" rpy="1.57 0 0" />
+      <origin xyz="-0.5 -0.05 -0.1" rpy="1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
@@ -383,6 +340,94 @@
         </geometry>
       </collision>
     </link>
+
+    <transmission name="bl_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="bl_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="bl_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="fr_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="fr_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="fr_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="fl_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="fl_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="fl_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="br_arm_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="br_arm_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="br_arm_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="br_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="br_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="br_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="bl_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="bl_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="bl_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="fr_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="fr_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="fr_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
+
+    <transmission name="fl_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="fl_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="fl_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+    </transmission>
 
     <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
