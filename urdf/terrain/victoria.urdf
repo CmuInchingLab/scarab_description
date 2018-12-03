@@ -3,7 +3,6 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <!-- <cylinder length="0.6" radius="0.2"/> -->
       	<mesh filename="package://scarab_description/meshes/terrain/victoria_crater.dae"/>
       </geometry>
     </visual>
