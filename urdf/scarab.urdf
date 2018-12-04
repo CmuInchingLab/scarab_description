@@ -191,14 +191,12 @@
       </collision>
     </link>
 
-    <joint name="fl_wheel_joint" type="revolute">
+    <joint name="fl_wheel_joint" type="continuous">
       <origin xyz="0.5 0.05 0" rpy="-1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
         effort="0"
-        lower="-1.57079"
-        upper="1.57079"
         velocity="5" />
       <parent link="fl_arm_link"/>
       <child link="fl_wheel_link"/>
@@ -214,7 +212,8 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
         <material name="gray">
           <color rgba=".2 .2 .2 1" />
@@ -223,20 +222,19 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
       </collision>
     </link>
 
-    <joint name="bl_wheel_joint" type="revolute">
+    <joint name="bl_wheel_joint" type="continuous">
       <origin xyz="-0.5 0.05 0" rpy="-1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
         effort="0"
-        lower="-1.57079"
-        upper="1.57079"
-        velocity="0" />
+        velocity="5" />
       <parent link="bl_arm_link"/>
       <child link="bl_wheel_link"/>
     </joint>
@@ -251,7 +249,8 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
         <material name="gray">
           <color rgba=".2 .2 .2 1" />
@@ -261,19 +260,18 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
       </collision>
     </link>
 
-    <joint name="fr_wheel_joint" type="revolute">
-      <origin xyz="0.5 -0.05 -0.1" rpy="1.57 0 0" />
+    <joint name="fr_wheel_joint" type="continuous">
+      <origin xyz="0.5 -0.05 -0.1" rpy="-1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
         effort="0"
-        lower="-1.57079"
-        upper="1.57079"
         velocity="5" />
       <parent link="fr_arm_link"/>
       <child link="fr_wheel_link"/>
@@ -289,7 +287,8 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
         <material name="gray">
           <color rgba=".2 .2 .2 1" />
@@ -298,20 +297,19 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
       </collision>
     </link>
 
-    <joint name="br_wheel_joint" type="revolute">
-      <origin xyz="-0.5 -0.05 -0.1" rpy="1.57 0 0" />
+    <joint name="br_wheel_joint" type="continuous">
+      <origin xyz="-0.5 -0.05 -0.1" rpy="-1.57 0 0" />
       <axis
         xyz="0 0 1" />
       <limit
         effort="0"
-        lower="-1.57079"
-        upper="1.57079"
-        velocity="0" />
+        velocity="5" />
       <parent link="br_arm_link"/>
       <child link="br_wheel_link"/>
     </joint>
@@ -326,7 +324,8 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
         <material name="gray">
           <color rgba=".2 .2 .2 1" />
@@ -336,7 +335,8 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://scarab_description/meshes/wheel.dae" />
+          <cylinder radius="0.25" length="0.2"/>
+          <!--mesh filename="package://scarab_description/meshes/wheel.dae" /-->
         </geometry>
       </collision>
     </link>
@@ -385,7 +385,7 @@
       </actuator>
     </transmission>
 
-    <transmission name="br_wheel_trans">
+    <!-- <transmission name="br_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="br_wheel_joint">
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -427,7 +427,7 @@
         <mechanicalReduction>1</mechanicalReduction>
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </actuator>
-    </transmission>
+    </transmission> -->
 
     <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -436,6 +436,77 @@
       </plugin>
     </gazebo>
 
+    <!-- KAREN UPDATE THESE VALUES -->
+    <!-- <gazebo>
+      <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <alwaysOn>true</alwaysOn>
+        <legacyMode>false</legacyMode>
+        <updateRate>100</updateRate>
+        <robotNamespace>/scarab</robotNamespace>
+        <leftJoint>fl_wheel_joint</leftJoint>
+        <rightJoint>fr_wheel_joint</rightJoint>
+        <wheelSeparation>1.2</wheelSeparation>
+        <wheelDiameter>0.5</wheelDiameter>
+        <torque>100</torque>
+        <commandTopic>frt_cmd_vel</commandTopic>
+        <odometryTopic>odom_diffdrive</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <odometrySource>world</odometrySource>
+        <publishTf>1</publishTf>
+        <rosDebugLevel>na</rosDebugLevel>
+        <wheelAcceleration>0</wheelAcceleration>
+        <wheelTorque>5</wheelTorque>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <publishWheelTF>false</publishWheelTF>
+        <publishWheelJointState>false</publishWheelJointState>
+      </plugin>
+    </gazebo>
 
+    <gazebo>
+      <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <alwaysOn>true</alwaysOn>
+        <legacyMode>false</legacyMode>
+        <updateRate>100</updateRate>
+        <robotNamespace>/scarab</robotNamespace>
+        <leftJoint>bl_wheel_joint</leftJoint>
+        <rightJoint>br_wheel_joint</rightJoint>
+        <wheelSeparation>1.2</wheelSeparation>
+        <wheelDiameter>0.5</wheelDiameter>
+        <torque>100</torque>
+        <commandTopic>back_cmd_vel</commandTopic>
+        <odometryTopic>odom_diffdrive</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <odometrySource>world</odometrySource>
+        <publishTf>1</publishTf>
+        <rosDebugLevel>na</rosDebugLevel>
+        <wheelAcceleration>0</wheelAcceleration>
+        <wheelTorque>5</wheelTorque>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <publishWheelTF>false</publishWheelTF>
+        <publishWheelJointState>false</publishWheelJointState>
+      </plugin>
+    </gazebo> -->
+
+    <gazebo>
+      <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+        <updateRate>100.0</updateRate>
+        <robotNamespace>/scarab</robotNamespace>
+        <leftFrontJoint>fl_wheel_joint</leftFrontJoint>
+        <rightFrontJoint>fr_wheel_joint</rightFrontJoint>
+        <leftRearJoint>bl_wheel_joint</leftRearJoint>
+        <rightRearJoint>br_wheel_joint</rightRearJoint>
+        <wheelSeparation>1.2</wheelSeparation>
+        <wheelDiameter>0.5</wheelDiameter>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <torque>20</torque>
+        <commandTopic>cmd_vel</commandTopic>
+        <broadcastTF>false</broadcastTF>
+        <odometryTopic>odom_diffdrive</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <covariance_x>0.000</covariance_x>
+        <covariance_y>0.000</covariance_y>
+        <covariance_yaw>0.00</covariance_yaw>
+      </plugin>
+    </gazebo>
 
 </robot>
