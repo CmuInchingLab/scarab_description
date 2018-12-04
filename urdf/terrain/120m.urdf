@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+  <link name="base_link">
+    <visual>
+      <geometry>
+      	<mesh filename="package://scarab_description/meshes/terrain/120m.dae"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
