@@ -3,7 +3,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-      	<mesh filename="package://scarab_description/meshes/terrain/victoria_crater.dae"/>
+      	<mesh filename="package://scarab_description/meshes/terrain/victoria.dae"/>
       </geometry>
     </visual>
   </link>

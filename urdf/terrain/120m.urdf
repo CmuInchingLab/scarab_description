@@ -5,6 +5,7 @@
       <geometry>
       	<mesh filename="package://scarab_description/meshes/terrain/120m.dae"/>
       </geometry>
+       <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
   </link>
 </robot>
